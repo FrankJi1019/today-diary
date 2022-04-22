@@ -1,0 +1,33 @@
+{
+  "name": "today-diary-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "npx nodemon src/app.ts",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrankJi1019/today-diary-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrankJi1019/today-diary-backend/issues"
+  },
+  "homepage": "https://github.com/FrankJi1019/today-diary-backend#readme",
+  "dependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "cognito-express": "^3.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.0",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.7.0"
+  }
+}
