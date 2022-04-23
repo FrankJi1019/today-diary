@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node dist/src/app.js",
     "dev": "npx nodemon src/app.ts",
     "build": "tsc -p ."
   },

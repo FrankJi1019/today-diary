@@ -21,7 +21,7 @@ const DiaryCreationForm = () => {
   const theme = useTheme()
   const {getCurrentUser} = useAuth()
 
-  const [content, setContent] = useState('<p>23333<br /></p>')
+  const [content, setContent] = useState('')
   const [isPublic, setIsPublic] = useState(false)
   const [emoji, setEmoji] = useState<string>('1f600')
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false)
