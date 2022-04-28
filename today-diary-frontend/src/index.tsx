@@ -7,7 +7,8 @@ import {ThemeProvider} from "@mui/material";
 import {BrowserRouter} from "react-router-dom";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import {AuthProvider} from "./Providers/AuthProvider";
+import {AuthProvider} from "./providers/AuthProvider";
+import {UtilProvider} from "./providers/UtilProvider";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,7 +16,9 @@ ReactDOM.render(
       <BrowserRouter>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <AuthProvider>
-            <App />
+            <UtilProvider>
+              <App />
+            </UtilProvider>
           </AuthProvider>
         </LocalizationProvider>
       </BrowserRouter>

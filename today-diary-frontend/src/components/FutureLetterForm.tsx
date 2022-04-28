@@ -2,7 +2,7 @@ import {Box, Button, TextField, useTheme} from '@mui/material'
 import moment from "moment";
 import {StaticDatePicker} from "@mui/x-date-pickers/StaticDatePicker";
 import {useState} from "react";
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 import axios from "axios";
 import {constants} from "../constants";
 import {FC} from 'react'
@@ -30,7 +30,7 @@ const FutureLetterForm: FC<{setModal: (content: ModalContent) => void}> = ({setM
         }
       )
       setModal({
-        content: `You will receive this letter on ${moment(targetDate).format('Do MM, YYYY')}`,
+        content: `You will receive this letter on the ${moment(targetDate).format('Do of MMMM, YYYY')}`,
         title: 'Letter has been sent',
         icon: 'success'
       })

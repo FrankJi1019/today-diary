@@ -4,7 +4,7 @@ import {FutureLetter} from "../types";
 import moment from "moment";
 import {useNavigate} from "react-router-dom";
 import {getFutureDiaryLetterInfoPageUrl} from "../routes";
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 import {constants} from "../constants";
 import axios from "axios";
 

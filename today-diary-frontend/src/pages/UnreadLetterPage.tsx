@@ -1,13 +1,13 @@
 import PageContainer from "./PageContainer";
 import {Grid} from "@mui/material";
-import UnreadLetterCard from "./UnreadLetterCard";
+import UnreadLetterCard from "../components/UnreadLetterCard";
 import {FutureLetter} from "../types";
 import {useEffect, useState} from "react";
-import BackButton from "./BackButton";
+import BackButton from "../components/BackButton";
 import {getFutureDiaryLetterUrl} from "../routes";
 import axios from "axios";
 import {constants} from "../constants";
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 
 const tempLetters: Array<FutureLetter> = [
   {

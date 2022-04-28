@@ -9,9 +9,9 @@ import {getDiaryInfoPageUrl, getHomePageUrl, getMyDiaryPageUrl} from "../routes"
 import EmojiPicker from "emoji-picker-react"
 import axios from "axios";
 import {constants} from "../constants";
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 import {LoadingButton} from "@mui/lab";
-import PageLoading from "./PageLoading";
+import PageLoading from "../pages/PageLoading";
 import Emoji from "./Emoji";
 
 const DiaryCreationForm = () => {

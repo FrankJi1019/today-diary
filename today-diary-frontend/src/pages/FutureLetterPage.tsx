@@ -1,28 +1,29 @@
 import {Box, Button, ButtonGroup, IconButton, useTheme} from '@mui/material'
-import FutureLetterForm from "./FutureLetterForm";
+import FutureLetterForm from "../components/FutureLetterForm";
 import {FutureLetter} from "../types";
 import {useEffect, useState} from "react";
-import FutureLetterCard from "./FutureLetterCard";
+import FutureLetterCard from "../components/FutureLetterCard";
 import PageContainer from "./PageContainer";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import {useNavigate} from "react-router-dom";
 import {getUnreadLetterPageUrl} from "../routes";
 import axios from "axios";
 import {constants} from "../constants";
-import {useAuth} from "../Providers/AuthProvider";
-import Modal, {ModalContent} from "./MyModal"
+import {useAuth} from "../providers/AuthProvider";
+import Modal, {ModalContent} from "../components/MyModal"
+import {useUtil} from "../providers/UtilProvider";
 
-const FutureDiaryPage = () => {
+const FutureLetterPage = () => {
 
   const navigate = useNavigate()
   const {getCurrentUser} = useAuth()
   const theme = useTheme()
+  const {screenSize} = useUtil()
 
   const [futureLetters, setFutureLetters] = useState<Array<FutureLetter>>([])
   const [unreadCount, setUnreadCount] = useState(0)
   const [rightContent, setRightContent] = useState<'past-letter' | 'form'>('past-letter')
   const [modal, setModal] = useState<null | ModalContent>(null)
-  const [screenSize, setScreenSize] = useState(window.innerWidth);
 
   useEffect(() => {
     try {
@@ -43,16 +44,6 @@ const FutureDiaryPage = () => {
       console.log(e)
     }
   })
-
-  useEffect(() => {
-    const resetSize = () => {
-      setScreenSize(window.innerWidth);
-    };
-    window.addEventListener("resize", resetSize);
-    return () => {
-      window.removeEventListener("resize", resetSize);
-    };
-  }, []);
 
   return (
     <PageContainer>
@@ -210,4 +201,4 @@ const FutureDiaryPage = () => {
   )
 }
 
-export default FutureDiaryPage
+export default FutureLetterPage

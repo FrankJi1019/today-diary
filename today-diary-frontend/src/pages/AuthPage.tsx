@@ -1,9 +1,9 @@
 import {Box, Typography, useTheme} from '@mui/material'
-import LoginForm from "./LoginForm";
-import SignupForm from "./SignupForm";
+import LoginForm from "../components/LoginForm";
+import SignupForm from "../components/SignupForm";
 import {useLocation, useNavigate} from 'react-router-dom'
-import ConfirmationForm from "./ConfirmationForm";
-import ReportIssueForm from "./ReportIssueForm";
+import ConfirmationForm from "../components/ConfirmationForm";
+import ReportIssueForm from "../components/ReportIssueForm";
 
 const AuthPage = () => {
 

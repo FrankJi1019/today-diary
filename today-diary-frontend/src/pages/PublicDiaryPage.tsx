@@ -1,10 +1,10 @@
 import {Box} from "@mui/material"
 import {Diary} from "../types";
 import {useEffect, useState} from 'react'
-import PublicDiaryCard from "./PublicDiaryCard";
+import PublicDiaryCard from "../components/PublicDiaryCard";
 import axios from "axios";
 import {constants} from "../constants";
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 import PageLoading from "./PageLoading";
 import PageContainer from "./PageContainer";
 

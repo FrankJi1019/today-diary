@@ -2,7 +2,7 @@ import {Box, TextField, Typography, IconButton} from '@mui/material'
 import {useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 import {getHomePageUrl} from "../routes";
 import {LoadingButton} from "@mui/lab";
 

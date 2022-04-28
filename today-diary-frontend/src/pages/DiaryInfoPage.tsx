@@ -6,10 +6,10 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {getHomePageUrl} from "../routes";
 import axios from "axios";
 import {constants} from "../constants";
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 import PageLoading from "./PageLoading";
-import DiaryInfo from "./DiaryInfo";
-import DiaryNotFound from "./DiaryNotFound";
+import DiaryInfo from "../components/DiaryInfo";
+import DiaryNotFound from "../components/DiaryNotFound";
 import PageContainer from "./PageContainer";
 
 const DiaryInfoPage = () => {

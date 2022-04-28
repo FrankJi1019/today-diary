@@ -1,7 +1,7 @@
 import {Box} from "@mui/material"
 import {useNavigate, useLocation} from 'react-router-dom'
 import {getDiaryCreationUrl, getFutureDiaryLetterUrl} from "../routes";
-import HomeTimer from "./HomeTimer";
+import HomeTimer from "../components/HomeTimer";
 
 const buttonStyle = {
   width: {

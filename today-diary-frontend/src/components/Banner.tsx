@@ -7,7 +7,7 @@ import CoPresentIcon from '@mui/icons-material/CoPresent';
 import CloseIcon from '@mui/icons-material/Close';
 import {useNavigate} from "react-router-dom";
 import {getFutureDiaryLetterUrl, getHomePageUrl, getMyDiaryPageUrl, getPublicDiaryPageUrl} from "../routes";
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import axios from "axios";
 import {constants} from "../constants";

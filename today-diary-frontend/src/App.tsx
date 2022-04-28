@@ -1,9 +1,9 @@
 import React from 'react';
 import {Box} from "@mui/material"
 import {Routes, Route} from "react-router-dom"
-import AuthPage from "./components/AuthPage";
-import LoginDirector from "./components/LoginDirector";
-import Dashboard from "./components/Dashboard";
+import AuthPage from "./pages/AuthPage";
+import LoginDirector from "./route-controllers/LoginDirector";
+import Dashboard from "./route-controllers/Dashboard";
 
 
 const App = () => {

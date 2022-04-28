@@ -1,16 +1,16 @@
 import {Box, Button, useTheme} from "@mui/material"
 import {Diary} from "../types";
-import DiaryCard from "./DiaryCard"
+import DiaryCard from "../components/DiaryCard"
 import {useEffect, useState} from "react";
-import DiaryFilter from "./DiaryFilter";
-import SingleFilter from "./SingleFilter";
+import DiaryFilter from "../components/DiaryFilter";
+import SingleFilter from "../components/SingleFilter";
 import moment from "moment";
 import AddIcon from '@mui/icons-material/Add';
 import {useNavigate, useLocation} from "react-router-dom";
 import {getDiaryCreationUrl} from "../routes";
 import axios from "axios";
 import {constants} from "../constants";
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 import PageLoading from "./PageLoading";
 import PageContainer from "./PageContainer";
 

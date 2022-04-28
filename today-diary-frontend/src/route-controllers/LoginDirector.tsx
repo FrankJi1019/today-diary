@@ -1,6 +1,6 @@
 import {Box} from "@mui/material";
 import {Navigate, Outlet} from 'react-router-dom'
-import {useAuth} from "../Providers/AuthProvider";
+import {useAuth} from "../providers/AuthProvider";
 
 const LoginDirector = () => {
 

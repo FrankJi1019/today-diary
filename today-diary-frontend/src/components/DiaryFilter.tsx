@@ -1,10 +1,11 @@
 import {Box, IconButton, styled, TextField, Grid, Checkbox, FormControlLabel, Button, useTheme} from "@mui/material";
-import {Filter} from "./MyDiaryPage";
+import {Filter} from "../pages/MyDiaryPage";
 import {FC} from 'react'
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import moment from "moment";
+import {useUtil} from "../providers/UtilProvider";
 
 interface DiaryFilterProps {
   filter: Filter,
@@ -42,19 +43,9 @@ const DateFilterValue = styled(Box)({
 const DiaryFilter: FC<DiaryFilterProps> = ({filter, setFilter, onFinish}) => {
 
   const theme = useTheme()
+  const {screenSize} = useUtil()
 
   const [view, setView] = useState<View>(View.FILTER)
-  const [screenSize, setScreenSize] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const resetSize = () => {
-      setScreenSize(window.innerWidth);
-    };
-    window.addEventListener("resize", resetSize);
-    return () => {
-      window.removeEventListener("resize", resetSize);
-    };
-  }, []);
 
   const resetFilter = () => {
     setFilter({
