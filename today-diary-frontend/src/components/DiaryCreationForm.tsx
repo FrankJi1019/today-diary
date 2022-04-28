@@ -1,8 +1,8 @@
 import {Box, IconButton, Switch, TextField, useTheme} from "@mui/material"
 import moment from "moment";
 import {useEffect, useState} from 'react'
-import MUIRichTextEditor from "mui-rte";
-import {stateToHTML} from 'draft-js-export-html';
+// import MUIRichTextEditor from "mui-rte";
+// import {stateToHTML} from 'draft-js-export-html';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {useNavigate, useLocation} from "react-router-dom";
 import {getDiaryInfoPageUrl, getHomePageUrl, getMyDiaryPageUrl} from "../routes";
@@ -12,7 +12,7 @@ import {constants} from "../constants";
 import {useAuth} from "../Providers/AuthProvider";
 import {LoadingButton} from "@mui/lab";
 import PageLoading from "./PageLoading";
-import {ContentState, convertFromHTML, convertToRaw} from "draft-js";
+import Emoji from "./Emoji";
 
 const DiaryCreationForm = () => {
 
@@ -54,15 +54,15 @@ const DiaryCreationForm = () => {
     }
   }
 
-  const HTMLToDefaultValue = (html: string) => {
-    const temp = convertFromHTML(html)
-    const state = ContentState.createFromBlockArray(
-      temp.contentBlocks,
-      temp.entityMap
-    )
-    const raw = convertToRaw(state)
-    return JSON.stringify(raw)
-  }
+  // const HTMLToDefaultValue = (html: string) => {
+  //   const temp = convertFromHTML(html)
+  //   const state = ContentState.createFromBlockArray(
+  //     temp.contentBlocks,
+  //     temp.entityMap
+  //   )
+  //   const raw = convertToRaw(state)
+  //   return JSON.stringify(raw)
+  // }
 
   useEffect(() => {
     const resetSize = () => {
@@ -177,7 +177,7 @@ const DiaryCreationForm = () => {
               cursor: 'pointer'
             }}
           >
-            {!isPageLoading && String.fromCodePoint(parseInt(emoji, 16))}
+            {!isPageLoading && <Emoji emoji={emoji} />}
           </Box>
           <Box
             sx={{
@@ -249,7 +249,10 @@ const DiaryCreationForm = () => {
                 }}
                 // onBlur={async () => {await save(false)}}
                 sx={{
-                  width: '100%'
+                  width: '100%',
+                  '& .MuiFilledInput-root': {
+                    backgroundColor: theme.palette.primary.light,
+                  }
                 }}
               />
             </Box>

@@ -5,6 +5,7 @@ import moment from "moment";
 import PublicIcon from '@mui/icons-material/Public';
 import {useNavigate, useLocation} from "react-router-dom";
 import {getDiaryInfoPageUrl} from "../routes";
+import Emoji from "./Emoji";
 
 interface DiaryCardProps {
   diary: Diary
@@ -46,12 +47,13 @@ const DiaryCard: FC<DiaryCardProps> = ({diary}) => {
           sx={{
             fontWeight: 'bold',
             color: '#2a0336',
+            fontSize: '18px',
           }}
         >
           {moment(diary.date).format('Do MMMM YYYY')}
         </Box>
-        <Box sx={{fontSize: '25px'}}>
-          {String.fromCodePoint(parseInt(diary.mood, 16))}
+        <Box sx={{fontSize: '25px', pl: '10px'}}>
+          <Emoji emoji={diary.mood} />
         </Box>
       </Box>
       <Box
@@ -60,7 +62,8 @@ const DiaryCard: FC<DiaryCardProps> = ({diary}) => {
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           pl: '20px',
-          pr: '30px'
+          pr: '30px',
+          fontSize: '18px',
         }}
       >
         {diary.content?.replace(/<[^>]*>?/gm, '') || ''}

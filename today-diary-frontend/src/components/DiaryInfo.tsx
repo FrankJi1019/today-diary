@@ -3,6 +3,7 @@ import moment from "moment";
 import HTMLBox from "./HTMLBox";
 import {Diary} from "../types";
 import {FC} from 'react'
+import Emoji from "./Emoji";
 
 interface DiaryInfoProps {
   diary: Diary
@@ -31,9 +32,6 @@ const DiaryInfo: FC<DiaryInfoProps> = ({diary}) => {
           >
             {moment(diary.date).format('Do MMMM YYYY')}
           </Typography>
-          <Typography>
-            {diary.author}
-          </Typography>
         </Box>
         <Box
           sx={{
@@ -41,7 +39,7 @@ const DiaryInfo: FC<DiaryInfoProps> = ({diary}) => {
             fontSize: '30px',
           }}
         >
-          {String.fromCodePoint(parseInt(diary.mood, 16))}
+          <Emoji emoji={diary.mood} />
         </Box>
       </Box>
       <Box

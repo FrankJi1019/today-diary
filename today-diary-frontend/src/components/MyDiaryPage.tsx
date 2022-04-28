@@ -12,6 +12,7 @@ import axios from "axios";
 import {constants} from "../constants";
 import {useAuth} from "../Providers/AuthProvider";
 import PageLoading from "./PageLoading";
+import PageContainer from "./PageContainer";
 
 const isDiaryInFilter = (diary: Diary, filter: Filter) => {
   let isValid = true
@@ -77,21 +78,10 @@ const MyDiaryPage = () => {
         setAllDiaries(res.data)
         setIsPageLoading(false)
       })
-  }, [setAllDiaries, getCurrentUser, setIsPageLoading])
+  }, [setAllDiaries, getCurrentUser, setIsPageLoading, getAccessToken])
 
   return (
-    <Box
-      sx={{
-        flex: '1',
-        backgroundColor: "#fdfafe",
-        padding: {
-          xs: '20px 20px',
-          sm: '20px 40px',
-          md: '20px 100px',
-          lg: '20px 200px'
-        },
-      }}
-    >
+    <PageContainer>
       <Box
         sx={{
           display: 'flex',
@@ -265,7 +255,7 @@ const MyDiaryPage = () => {
             You have no diaries to display
           </Box>
       }
-    </Box>
+    </PageContainer>
   )
 }
 

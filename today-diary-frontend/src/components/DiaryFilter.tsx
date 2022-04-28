@@ -161,7 +161,7 @@ const DiaryFilter: FC<DiaryFilterProps> = ({filter, setFilter, onFinish}) => {
                       <Checkbox
                         color='secondary'
                         checked={filter.includePublic}
-                        onChange={(newValue) => {
+                        onChange={() => {
                           if (!filter.includePublic) {
                             setFilter({
                               ...filter,

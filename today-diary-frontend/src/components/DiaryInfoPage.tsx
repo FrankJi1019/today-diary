@@ -10,6 +10,7 @@ import {useAuth} from "../Providers/AuthProvider";
 import PageLoading from "./PageLoading";
 import DiaryInfo from "./DiaryInfo";
 import DiaryNotFound from "./DiaryNotFound";
+import PageContainer from "./PageContainer";
 
 const DiaryInfoPage = () => {
 
@@ -39,18 +40,7 @@ const DiaryInfoPage = () => {
     )
 
   return (
-    <Box
-      sx={{
-        flex: '1',
-        backgroundColor: "#fdfafe",
-        padding: {
-          xs: '20px 20px',
-          sm: '20px 40px',
-          md: '20px 100px',
-          lg: '20px 200px'
-        },
-      }}
-    >
+    <PageContainer>
       <Box sx={{mb: '10px'}}>
         <IconButton
           onClick={() => {
@@ -70,7 +60,7 @@ const DiaryInfoPage = () => {
       {
         diary ? <DiaryInfo diary={diary} /> : <DiaryNotFound />
       }
-    </Box>
+    </PageContainer>
   )
 }
 

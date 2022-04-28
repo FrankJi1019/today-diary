@@ -1,13 +1,16 @@
-import {AppBar, Box, Drawer, Typography, Toolbar, useTheme, Menu, MenuItem} from "@mui/material"
-import React, {useState} from "react";
+import {AppBar, Box, Drawer, Typography, Toolbar, useTheme, Menu, MenuItem, styled} from "@mui/material"
+import React, {useState, FC, useEffect} from "react";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import HomeIcon from '@mui/icons-material/Home';
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
 import CloseIcon from '@mui/icons-material/Close';
 import {useNavigate} from "react-router-dom";
-import {getHomePageUrl, getMyDiaryPageUrl, getPublicDiaryPageUrl} from "../routes";
+import {getFutureDiaryLetterUrl, getHomePageUrl, getMyDiaryPageUrl, getPublicDiaryPageUrl} from "../routes";
 import {useAuth} from "../Providers/AuthProvider";
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
+import axios from "axios";
+import {constants} from "../constants";
 
 interface BannerOption {
   title: string,
@@ -28,10 +31,28 @@ const bannerOptions: Array<BannerOption> = [
     title: "Public",
     icon: <CoPresentIcon />,
     target: getPublicDiaryPageUrl(),
+  }, {
+    title: "Future",
+    icon: <AccessTimeFilledIcon />,
+    target: getFutureDiaryLetterUrl(),
   }
 ]
 
-const HorizontalOptionBar = () => {
+const NotificationCircle = styled(Box) ({
+  backgroundColor: 'red',
+  position: 'absolute',
+  fontWeight: 'bold',
+  color: 'white',
+  fontSize: '14px',
+  width: '20px',
+  height: '20px',
+  borderRadius: '100px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
+})
+
+const HorizontalOptionBar: FC<{count: string | null}> = ({count}) => {
 
   const navigate = useNavigate()
 
@@ -54,6 +75,7 @@ const HorizontalOptionBar = () => {
                 cursor: 'pointer',
                 userSelect: 'none',
                 transition: 'all .1s',
+                position: 'relative',
                 '&:hover': {
                   color: '#f3ddfa',
                   fontWeight: '500'
@@ -61,6 +83,18 @@ const HorizontalOptionBar = () => {
               }}
             >
               {option.title}
+              {
+                option.title === 'Future' && count &&
+                <NotificationCircle
+                  sx={{
+                    position: 'absolute',
+                    top: '-9px',
+                    right: '8px'
+                  }}
+                >
+                  {count}
+                </NotificationCircle>
+              }
             </Box>
           )
         })
@@ -69,7 +103,7 @@ const HorizontalOptionBar = () => {
   )
 }
 
-const OptionCards: React.FC<{onChooseOption: () => void}> = ({onChooseOption}) => {
+const OptionCards: React.FC<{onChooseOption: () => void, count: string | null}> = ({onChooseOption, count}) => {
 
   const navigate = useNavigate()
   const theme = useTheme()
@@ -101,6 +135,7 @@ const OptionCards: React.FC<{onChooseOption: () => void}> = ({onChooseOption}) =
                 alignItems: 'center',
                 flexDirection: 'column',
                 minHeight: '150px',
+                position: 'relative'
               }}
             >
               <Box sx={{color: theme.palette.primary.main}}>
@@ -109,6 +144,19 @@ const OptionCards: React.FC<{onChooseOption: () => void}> = ({onChooseOption}) =
               <Typography color='primary'>
                 {option.title}
               </Typography>
+              {
+                option.title === 'Future' && count &&
+                <NotificationCircle
+                  sx={{
+                    position: 'absolute',
+                    top: '-2px',
+                    right: '-2px',
+                    transform: 'scale(1.2)'
+                  }}
+                >
+                  {count}
+                </NotificationCircle>
+              }
             </Box>
           )
         })
@@ -128,6 +176,7 @@ const Banner = () => {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [futureLetterCount, setFutureLetterCount] = useState<string | null>(null)
 
   const handleOpen = (event: any) => {
     if (anchorEl !== event.currentTarget) {
@@ -138,6 +187,20 @@ const Banner = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(() => {
+    try {
+      const userId = getCurrentUser()?.getUsername()
+      axios.get(`${constants.backend}/users/${userId}/future-letters/unread-count`)
+        .then(res => {
+          console.log(res.data)
+          if (res.data > 0) setFutureLetterCount(res.data + '')
+          else setFutureLetterCount(null)
+        })
+    } catch (e) {
+      console.log(e)
+    }
+  }, [getCurrentUser, setFutureLetterCount, navigate])
 
   return (
     <Box>
@@ -231,7 +294,7 @@ const Banner = () => {
                 alignItems: 'center'
               }}
             >
-              <HorizontalOptionBar />
+              <HorizontalOptionBar count={futureLetterCount} />
             </Box>
           </Box>
           <Box
@@ -295,7 +358,7 @@ const Banner = () => {
             <CloseIcon />
           </Box>
           <Box sx={{padding: '20px'}}>
-            <OptionCards onChooseOption={() => setIsDrawerOpen(false)} />
+            <OptionCards onChooseOption={() => setIsDrawerOpen(false)} count={futureLetterCount} />
           </Box>
         </Box>
       </Drawer>

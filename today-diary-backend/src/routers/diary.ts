@@ -1,5 +1,4 @@
-import {Router} from "express";
-import {Request, Response} from "express";
+import {Router, Request, Response} from "express";
 import diaryModel from "../../models/Diary";
 import bodyValidator from "../../middlewares/BodyValidator";
 import DiaryCreationDTO from "../../dto/DiaryCreationDTO";

@@ -1,7 +1,6 @@
 import {Box} from "@mui/material"
 import {useNavigate, useLocation} from 'react-router-dom'
-import {getDiaryCreationUrl} from "../routes";
-import {useAuth} from "../Providers/AuthProvider";
+import {getDiaryCreationUrl, getFutureDiaryLetterUrl} from "../routes";
 import HomeTimer from "./HomeTimer";
 
 const buttonStyle = {
@@ -90,6 +89,14 @@ const HomePage = () => {
               }}
           >
             How's today?
+          </Box>
+          <Box
+            sx={buttonStyle}
+            onClick={() => {
+              navigate(getFutureDiaryLetterUrl())
+            }}
+          >
+            To the future
           </Box>
         </Box>
       </Box>

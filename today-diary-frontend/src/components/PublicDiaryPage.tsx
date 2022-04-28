@@ -6,6 +6,7 @@ import axios from "axios";
 import {constants} from "../constants";
 import {useAuth} from "../Providers/AuthProvider";
 import PageLoading from "./PageLoading";
+import PageContainer from "./PageContainer";
 
 const PublicDiaryPage = () => {
 
@@ -23,18 +24,7 @@ const PublicDiaryPage = () => {
   }, [getCurrentUser, setDiaries])
 
   return (
-    <Box
-      sx={{
-        flex: '1',
-        backgroundColor: "#fdfafe",
-        padding: {
-          xs: '20px 20px',
-          sm: '20px 40px',
-          md: '20px 100px',
-          lg: '20px 200px'
-        },
-      }}
-    >
+    <PageContainer>
       {
         isPageLoading ? <PageLoading /> :
           diaries.map(diary => <PublicDiaryCard diary={diary} key={JSON.stringify(diary)} /> )
@@ -51,7 +41,7 @@ const PublicDiaryPage = () => {
           There are no public diaries
         </Box>
       }
-    </Box>
+    </PageContainer>
   )
 }
 

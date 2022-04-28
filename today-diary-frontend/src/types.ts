@@ -6,3 +6,13 @@ export interface Diary {
   mood: string,
   isPublic: boolean,
 }
+
+export interface FutureLetter {
+  letterId: string,
+  author: string,
+  fromDate: string,
+  toDate: string,
+  title: string,
+  content: string,
+  read: boolean,
+}

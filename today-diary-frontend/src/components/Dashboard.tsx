@@ -6,6 +6,9 @@ import MyDiaryPage from "./MyDiaryPage";
 import DiaryCreationForm from "./DiaryCreationForm";
 import DiaryInfoPage from "./DiaryInfoPage";
 import PublicDiaryPage from "./PublicDiaryPage";
+import FutureDiaryPage from "./FutureDiaryPage";
+import FutureLetterInfoPage from "./FutureLetterInfoPage";
+import UnreadLetterPage from "./UnreadLetterPage";
 
 const Dashboard = () => {
   return (
@@ -23,6 +26,9 @@ const Dashboard = () => {
         <Route path='/diary/create' element={<DiaryCreationForm />} />
         <Route path='/diary/:diaryId' element={<DiaryInfoPage />} />
         <Route path='/public' element={<PublicDiaryPage />} />
+        <Route path='/future' element={<FutureDiaryPage />} />
+        <Route path='/future/unread' element={<UnreadLetterPage />} />
+        <Route path='/future/:letterId' element={<FutureLetterInfoPage />} />
       </Routes>
     </Box>
   )

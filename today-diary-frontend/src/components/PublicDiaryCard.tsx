@@ -47,7 +47,8 @@ const PublicDiaryCard: FC<PublicDiaryCardProps> = ({diary}) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          position: 'relative'
+          position: 'relative',
+          fontSize: '18px',
         }}
       >
           {diary.author + ': ' + moment(diary.date).format('Do MMMM YYYY')}
@@ -58,7 +59,8 @@ const PublicDiaryCard: FC<PublicDiaryCardProps> = ({diary}) => {
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           pl: '20px',
-          pr: '30px'
+          pr: '30px',
+          fontSize: '18px',
         }}
       >
         {diary.content?.replace(/<[^>]*>?/gm, '') || ''}
