@@ -5,8 +5,10 @@ import {useState} from "react";
 import {useAuth} from "../Providers/AuthProvider";
 import axios from "axios";
 import {constants} from "../constants";
+import {FC} from 'react'
+import {ModalContent} from "./MyModal";
 
-const FutureLetterForm = () => {
+const FutureLetterForm: FC<{setModal: (content: ModalContent) => void}> = ({setModal}) => {
 
   const theme = useTheme()
   const {getCurrentUser} = useAuth()
@@ -27,6 +29,11 @@ const FutureLetterForm = () => {
           author, fromDate, toDate, title, content
         }
       )
+      setModal({
+        content: `You will receive this letter on ${moment(targetDate).format('Do MM, YYYY')}`,
+        title: 'Letter has been sent',
+        icon: 'success'
+      })
     } catch (e) {
       console.log(e)
     }
@@ -36,16 +43,11 @@ const FutureLetterForm = () => {
     <Box>
       <Box
         sx={{
-          padding: {
-            xs: '0 20px',
-            sm: '0 50px',
-            md: '0 200px'
-          },
           mb: '10px',
         }}
       >
         <TextField
-          label='Subject'
+          placeholder='Subject'
           variant='standard'
           value={title}
           onChange={(e) => {
@@ -58,14 +60,8 @@ const FutureLetterForm = () => {
       </Box>
       <Box
         sx={{
-          padding: {
-            xs: '0',
-            sm: '0 20px',
-            md: '0 200px'
-          },
           position: 'relative',
           display: 'flex',
-          justifyContent: 'flex-end'
         }}
       >
         <Box
@@ -79,6 +75,7 @@ const FutureLetterForm = () => {
               color: theme.palette.secondary.main,
               mb: '30px',
               mr: '30px',
+              ml: '30px',
               '&:hover': {
                 textDecoration: 'underline'
               }
@@ -115,18 +112,11 @@ const FutureLetterForm = () => {
           </Box>
         </Box>
       </Box>
-      <Box
-        sx={{
-          margin: {
-            xs: '0 20px 10px',
-            sm: '0 50px 10px'
-          }
-        }}
-      >
+      <Box>
         <TextField
           variant='filled'
           multiline
-          rows={10}
+          rows={12}
           value={content}
           onChange={(e) => {
             setContent(e.target.value)
@@ -141,10 +131,7 @@ const FutureLetterForm = () => {
       </Box>
       <Box
         sx={{
-          margin: {
-            xs: '0 20px 10px',
-            sm: '0 50px 10px'
-          },
+          mt: '30px',
           display: 'flex',
           flexDirection: 'row-reverse'
         }}

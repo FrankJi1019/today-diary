@@ -5,6 +5,7 @@ const PageContainer = ({children}) => {
   return (
     <Box
       sx={{
+        position: 'relative',
         flex: '1',
         backgroundColor: "#fdfafe",
         padding: {

@@ -1,4 +1,4 @@
-import {AppBar, Box, Drawer, Typography, Toolbar, useTheme, Menu, MenuItem, styled} from "@mui/material"
+import {AppBar, Box, Drawer, Typography, Toolbar, useTheme, Menu, MenuItem, styled, Button} from "@mui/material"
 import React, {useState, FC, useEffect} from "react";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import HomeIcon from '@mui/icons-material/Home';
@@ -345,20 +345,44 @@ const Banner = () => {
         onClose={() => setIsDrawerOpen(false)}
         transitionDuration={750}
       >
-        <Box sx={{width: '100vw'}}>
+        <Box
+          sx={{
+            width: '100vw',
+            height: '100vh',
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between'
+          }}
+        >
+          <Box>
+            <Box
+              onClick={() => setIsDrawerOpen(false)}
+              sx={{
+                display: 'flex',
+                flexDirection: 'row-reverse',
+                mt: '6px',
+                mr: '6px'
+              }}
+            >
+              <CloseIcon />
+            </Box>
+            <Box sx={{padding: '20px'}}>
+              <OptionCards onChooseOption={() => setIsDrawerOpen(false)} count={futureLetterCount} />
+            </Box>
+          </Box>
           <Box
-            onClick={() => setIsDrawerOpen(false)}
             sx={{
-              display: 'flex',
-              flexDirection: 'row-reverse',
-              mt: '6px',
-              mr: '6px'
+              padding: '20px',
             }}
           >
-            <CloseIcon />
-          </Box>
-          <Box sx={{padding: '20px'}}>
-            <OptionCards onChooseOption={() => setIsDrawerOpen(false)} count={futureLetterCount} />
+            <Button
+              variant='contained'
+              onClick={logout}
+              sx={{width: '100%'}}
+            >
+              Log out
+            </Button>
           </Box>
         </Box>
       </Drawer>

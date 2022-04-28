@@ -31,12 +31,22 @@ const FutureLetterCard: FC<{letter: FutureLetter}> = ({letter}) => {
       <Box
         sx={{
           display: 'flex',
-          fontSize: '18px',
+          fontSize: {
+            xs: '16px',
+            sm: '18px'
+          },
           color: theme.palette.primary.main,
           mb: '7px'
         }}
       >
-        <Box sx={{mr: '20px'}}>
+        <Box
+          sx={{
+            mr: {
+              xs: '10px',
+              sm: '20px'
+            }
+          }}
+        >
           From <strong>{letter.fromDate}</strong>
         </Box>
         <Box>
