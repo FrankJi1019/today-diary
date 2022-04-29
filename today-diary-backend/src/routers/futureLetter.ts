@@ -31,7 +31,7 @@ futureLetterRouter.get('/', async (req: Request, res: Response) => {
     res.json(allLetters)
   } else {
     const letters = (await futureLetterModel.find({read: filter === 'read'})).filter(letter => {
-      const toDate = new Date(letter.toDate)
+      const toDate = new Date(letter.toDate + ' 00:01')
       return +toDate < +new Date()
     })
     res.json(letters)
@@ -52,7 +52,7 @@ futureLetterRouter.patch('/:letterId/read', async (req: Request, res: Response) 
 futureLetterRouter.get('/unread-count', async (req: Request, res: Response) => {
   const author = req.params.userId
   const allUnread = (await futureLetterModel.find({author, read: false})).filter(letter => {
-    const toDate = new Date(letter.toDate)
+    const toDate = new Date(letter.toDate + ' 00:01')
     return +toDate < +new Date()
   })
   res.json(allUnread.length)

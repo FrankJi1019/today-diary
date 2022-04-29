@@ -5,16 +5,8 @@
 To run this project, please follow the steps below:
 
 1. Please make sure you have node installed on you device
-2. Clone the repository and direct into today-diary-frontend
+2. Clone the repository and direct into today-diary-backend
 3. Execute the following commands
-
-```shell
-> npm install
-> npm start
-```
-
-4. Open another terminal, and direct to today-diary-backend
-5. Execute the following commands
 
 ```shell
 > npm install
@@ -22,3 +14,11 @@ To run this project, please follow the steps below:
 > npm run start
 ```
 
+4. Open another terminal and direct into today-diary-frontend
+
+5. Execute the following commands
+
+```shell
+> npm install
+> npm start
+```
