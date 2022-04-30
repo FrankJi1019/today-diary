@@ -7,6 +7,7 @@ import axios from "axios";
 import {constants} from "../constants";
 import {FC} from 'react'
 import {ModalContent} from "./MyModal";
+import {LoadingButton} from "@mui/lab";
 
 const FutureLetterForm: FC<{setModal: (content: ModalContent) => void}> = ({setModal}) => {
 
@@ -17,8 +18,10 @@ const FutureLetterForm: FC<{setModal: (content: ModalContent) => void}> = ({setM
   const [targetDate, setTargetDate] = useState<Date | null>(null)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [sendButtonLoading, setSendButtonLoading] = useState(false)
 
   const submit = async () => {
+    setSendButtonLoading(true)
     const author = getCurrentUser()?.getUsername()
     const fromDate = moment(new Date()).format('YYYY-MM-DD')
     const toDate = moment(targetDate).format('YYYY-MM-DD')
@@ -37,6 +40,10 @@ const FutureLetterForm: FC<{setModal: (content: ModalContent) => void}> = ({setM
     } catch (e) {
       console.log(e)
     }
+    setSendButtonLoading(false)
+    setContent('')
+    setTitle('')
+    setTargetDate(null)
   }
 
   return (
@@ -136,7 +143,7 @@ const FutureLetterForm: FC<{setModal: (content: ModalContent) => void}> = ({setM
           flexDirection: 'row-reverse'
         }}
       >
-        <Button
+        <LoadingButton
           variant='contained'
           color='secondary'
           sx={{
@@ -147,9 +154,10 @@ const FutureLetterForm: FC<{setModal: (content: ModalContent) => void}> = ({setM
           }}
           onClick={submit}
           disabled={title.trim() === '' || content === '' || targetDate === null}
+          loading={sendButtonLoading}
         >
           send
-        </Button>
+        </LoadingButton>
       </Box>
     </Box>
   )

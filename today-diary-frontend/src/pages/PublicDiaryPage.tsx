@@ -23,10 +23,11 @@ const PublicDiaryPage = () => {
       })
   }, [getCurrentUser, setDiaries])
 
+  if (isPageLoading) return <PageContainer><PageLoading /></PageContainer>
+
   return (
     <PageContainer>
       {
-        isPageLoading ? <PageLoading /> :
           diaries.map(diary => <PublicDiaryCard diary={diary} key={JSON.stringify(diary)} /> )
       }
       {

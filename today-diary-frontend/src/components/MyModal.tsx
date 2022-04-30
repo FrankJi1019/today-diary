@@ -39,14 +39,24 @@ const MyModal: FC<ModalProps> = ({open, title, content, onClose, icon}) => {
             xs: '100vh',
             sm: 'auto',
             md: 'auto'
-          }
+          },
+          boxSizing: 'border-box'
         }}
       >
         <Box
           sx={{
-            position: 'absolute',
+            position: {
+              xs: 'none',
+              sm: 'absolute'
+            },
             top: '0px',
-            right: '00px',
+            right: '0px',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            mr: {
+              xs: '20px',
+              sm: '0'
+            }
           }}
         >
           <IconButton onClick={onClose}>
@@ -57,7 +67,7 @@ const MyModal: FC<ModalProps> = ({open, title, content, onClose, icon}) => {
           sx={{
             fontSize: '25px',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           {

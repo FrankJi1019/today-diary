@@ -8,6 +8,7 @@ import {getFutureDiaryLetterUrl} from "../routes";
 import axios from "axios";
 import {constants} from "../constants";
 import {useAuth} from "../providers/AuthProvider";
+import PageLoading from "./PageLoading";
 
 const tempLetters: Array<FutureLetter> = [
   {
@@ -42,16 +43,23 @@ const UnreadLetterPage = () => {
   const {getCurrentUser} = useAuth()
 
   const [futureLetters, setFutureLetters] = useState<Array<FutureLetter>>([])
+  const [pageLoading, setPageLoading] = useState(true)
 
   useEffect(() => {
     try {
       const userId = getCurrentUser()?.getUsername()
       axios.get(`${constants.backend}/users/${userId}/future-letters?filter=unread`)
-        .then(res => setFutureLetters(res.data))
+        .then(res => {
+          setFutureLetters(res.data)
+          setPageLoading(false)
+        })
     } catch (e) {
       console.log(e)
+      setPageLoading(false)
     }
   }, [getCurrentUser, setFutureLetters])
+
+  if (pageLoading) return <PageContainer><PageLoading /></PageContainer>
 
   return (
     <PageContainer>

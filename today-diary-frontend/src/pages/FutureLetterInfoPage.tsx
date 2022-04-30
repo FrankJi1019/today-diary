@@ -11,16 +11,6 @@ import {constants} from "../constants";
 import axios from "axios";
 import {useParams} from "react-router-dom";
 
-const temp: FutureLetter = {
-  letterId: '1',
-  author: 'string',
-  fromDate: '03/06/2005',
-  toDate: '04/06/2005',
-  title: 'Hello World',
-  content: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit'.repeat(10),
-  read: false,
-}
-
 const FutureLetterInfoPage = () => {
 
   const theme = useTheme()
@@ -39,7 +29,7 @@ const FutureLetterInfoPage = () => {
     }
   }, [getCurrentUser, letterId, setLetter])
 
-  if (letter === null) return <PageLoading />
+  if (letter == null) return <PageContainer><PageLoading /></PageContainer>
 
   return (
     <PageContainer>

@@ -32,12 +32,7 @@ const DiaryInfoPage = () => {
       })
   }, [diaryId, getCurrentUser, setDiary])
 
-  if (isPageLoading)
-    return (
-      <Box sx={{flex: '1', backgroundColor: "#fdfafe"}}>
-        <PageLoading />
-      </Box>
-    )
+  if (isPageLoading) return <PageContainer><PageLoading /></PageContainer>
 
   return (
     <PageContainer>

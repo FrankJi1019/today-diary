@@ -193,7 +193,6 @@ const Banner = () => {
       const userId = getCurrentUser()?.getUsername()
       axios.get(`${constants.backend}/users/${userId}/future-letters/unread-count`)
         .then(res => {
-          console.log(res.data)
           if (res.data > 0) setFutureLetterCount(res.data + '')
           else setFutureLetterCount(null)
         })

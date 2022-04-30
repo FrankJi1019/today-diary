@@ -3,12 +3,15 @@ import futureLetterModel from "../../models/FutureLetter";
 import bodyValidator from "../../middlewares/BodyValidator";
 import FutureLetterCreationDTO from "../../dto/FutureLetterCreationDTO";
 
+const FORCE_WAIT = 1000
+
 const futureLetterRouter = Router({mergeParams: true})
 
 futureLetterRouter.post(
   '/',
   [bodyValidator(FutureLetterCreationDTO)],
   async (req: Request, res: Response) => {
+    await new Promise(r => setTimeout(r, FORCE_WAIT));
     const body = req.body
     const sameDayLetter = await futureLetterModel.find({
       author: body.author,
@@ -24,6 +27,7 @@ futureLetterRouter.post(
 )
 
 futureLetterRouter.get('/', async (req: Request, res: Response) => {
+  await new Promise(r => setTimeout(r, FORCE_WAIT));
   const filter = req.query.filter
   const author = req.params.userId
   if (!filter) {
@@ -39,6 +43,7 @@ futureLetterRouter.get('/', async (req: Request, res: Response) => {
 })
 
 futureLetterRouter.patch('/:letterId/read', async (req: Request, res: Response) => {
+  await new Promise(r => setTimeout(r, FORCE_WAIT));
   const letterId = req.params.letterId
   const isExist = await futureLetterModel.exists({letterId})
   if (isExist) {
@@ -50,6 +55,7 @@ futureLetterRouter.patch('/:letterId/read', async (req: Request, res: Response) 
 })
 
 futureLetterRouter.get('/unread-count', async (req: Request, res: Response) => {
+  await new Promise(r => setTimeout(r, FORCE_WAIT));
   const author = req.params.userId
   const allUnread = (await futureLetterModel.find({author, read: false})).filter(letter => {
     const toDate = new Date(letter.toDate + ' 00:01')
@@ -59,6 +65,7 @@ futureLetterRouter.get('/unread-count', async (req: Request, res: Response) => {
 })
 
 futureLetterRouter.get('/:letterId', async (req: Request, res: Response) => {
+  await new Promise(r => setTimeout(r, FORCE_WAIT));
   const letterId = req.params.letterId
   const letter = await futureLetterModel.findOne({letterId})
   if (letter) res.json(letter)

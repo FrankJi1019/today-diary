@@ -12,6 +12,7 @@ import {constants} from "../constants";
 import {useAuth} from "../providers/AuthProvider";
 import Modal, {ModalContent} from "../components/MyModal"
 import {useUtil} from "../providers/UtilProvider";
+import PageLoading from "./PageLoading";
 
 const FutureLetterPage = () => {
 
@@ -24,14 +25,19 @@ const FutureLetterPage = () => {
   const [unreadCount, setUnreadCount] = useState(0)
   const [rightContent, setRightContent] = useState<'past-letter' | 'form'>('past-letter')
   const [modal, setModal] = useState<null | ModalContent>(null)
+  const [pageLoading, setPageLoading] = useState(true)
 
   useEffect(() => {
     try {
       const useId = getCurrentUser()?.getUsername()
       axios.get(`${constants.backend}/users/${useId}/future-letters?filter=read`)
-        .then(res => setFutureLetters(res.data))
+        .then(res => {
+          setFutureLetters(res.data)
+          setPageLoading(false)
+        })
     } catch (e) {
       console.log(e)
+      setPageLoading(false)
     }
   }, [getCurrentUser, setFutureLetters])
 
@@ -39,11 +45,15 @@ const FutureLetterPage = () => {
     try {
       const userId = getCurrentUser()?.getUsername()
       axios.get(`${constants.backend}/users/${userId}/future-letters/unread-count`)
-        .then(res => setUnreadCount(res.data))
+        .then(res => {
+          setUnreadCount(res.data)
+        })
     } catch (e) {
       console.log(e)
     }
   })
+
+  if (pageLoading) return <PageContainer><PageLoading /></PageContainer>
 
   return (
     <PageContainer>
@@ -179,6 +189,18 @@ const FutureLetterPage = () => {
                 <Box sx={{mt: '40px'}}>
                   {
                     futureLetters.map(letter => <FutureLetterCard key={letter.letterId} letter={letter} />)
+                  }
+                  {
+                    futureLetters.length === 0 &&
+                    <Box
+                      sx={{
+                        textAlign: 'center',
+                        mt: '100px',
+                        color: '#999'
+                      }}
+                    >
+                      You have not got any letters from the past
+                    </Box>
                   }
                 </Box> :
                 <Box sx={{mt: '40px'}}>
