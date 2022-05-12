@@ -3,7 +3,7 @@ import diaryModel from "../../models/Diary";
 import bodyValidator from "../../middlewares/BodyValidator";
 import DiaryCreationDTO from "../../dto/DiaryCreationDTO";
 
-const FORCE_WAIT = 1000
+const FORCE_WAIT = 0
 
 const diaryRouter = Router({mergeParams: true})
 

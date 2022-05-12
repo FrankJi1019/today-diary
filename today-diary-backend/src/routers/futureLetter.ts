@@ -3,7 +3,7 @@ import futureLetterModel from "../../models/FutureLetter";
 import bodyValidator from "../../middlewares/BodyValidator";
 import FutureLetterCreationDTO from "../../dto/FutureLetterCreationDTO";
 
-const FORCE_WAIT = 1000
+const FORCE_WAIT = 0
 
 const futureLetterRouter = Router({mergeParams: true})
 

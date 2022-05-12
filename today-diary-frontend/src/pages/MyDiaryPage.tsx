@@ -25,7 +25,7 @@ const isDiaryInFilter = (diary: Diary, filter: Filter) => {
       filter.startDate.getMonth(),
       filter.startDate.getDate(),
       0, 0, 0)
-    if (startDate.getTime() > diary.date.getTime()) isValid = false
+    if (startDate.getTime() > new Date(diary.date).getTime()) isValid = false
   }
   if (filter.endDate !== null) {
     const endDate = new Date(
