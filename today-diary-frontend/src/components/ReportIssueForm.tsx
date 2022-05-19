@@ -24,10 +24,14 @@ const ReportIssueForm = () => {
       constants.emailJs.PublicKey
     ).then(() => {
       setResponse('Issue has been reported')
+      setButtonLoading(false)
+      setSubject('')
+      setEmail('')
+      setMessage('')
     }, () => {
       setResponse('An error has occurred')
+      setButtonLoading(false)
     });
-    setButtonLoading(false)
   }
 
   return (
