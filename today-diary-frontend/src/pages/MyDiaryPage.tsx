@@ -33,7 +33,7 @@ const isDiaryInFilter = (diary: Diary, filter: Filter) => {
       filter.endDate.getMonth(),
       filter.endDate.getDate(),
       23, 59, 59)
-    if (endDate.getTime() < diary.date.getTime()) isValid = false
+    if (endDate.getTime() < new Date(diary.date).getTime()) isValid = false
   }
   if ((diary.isPublic && !filter.includePublic) || (!diary.isPublic && !filter.includePrivate)) isValid = false
   return isValid
