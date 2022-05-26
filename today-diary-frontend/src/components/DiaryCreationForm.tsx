@@ -37,7 +37,7 @@ const DiaryCreationForm = () => {
         `${constants.backend}/users/${getCurrentUser()?.getUsername()}/diaries`,
         {
           author: getCurrentUser()?.getUsername(),
-          date: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`,
+          date: `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`,
           content,
           mood: emoji,
           isPublic: isPublic
