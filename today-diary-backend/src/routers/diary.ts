@@ -53,8 +53,8 @@ diaryRouter.get(
     await new Promise(r => setTimeout(r, FORCE_WAIT));
     const diaryId = req.params['diaryId']
     const author = req.params['userId']
-    const diary = await diaryModel.findOne({diaryId, author})
-    if (diary) {
+    const diary = await diaryModel.findOne({diaryId})
+    if (diary && (diary.isPublic || author === diary.author)) {
       res.json(diary)
     } else {
       res.status(404).json({message: "Diary not found"})
