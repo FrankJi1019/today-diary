@@ -1,6 +1,5 @@
 import {Box, Typography, useTheme} from "@mui/material";
 import moment from "moment";
-import HTMLBox from "./HTMLBox";
 import {Diary} from "../types";
 import {FC} from 'react'
 import Emoji from "./Emoji";
@@ -50,9 +49,7 @@ const DiaryInfo: FC<DiaryInfoProps> = ({diary}) => {
         }}
       >
         <Box>
-          <HTMLBox>
-            {diary.content || ''}
-          </HTMLBox>
+          {diary ? diary.content.split('\n').map(content => <Box>{content}</Box>) : ''}
         </Box>
       </Box>
     </Box>

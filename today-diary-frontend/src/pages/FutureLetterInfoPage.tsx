@@ -3,7 +3,6 @@ import {FutureLetter} from "../types";
 import {useEffect, useState} from "react";
 import {Box, useTheme} from "@mui/material";
 import PageLoading from "./PageLoading";
-import HTMLBox from "../components/HTMLBox";
 import BackButton from "../components/BackButton";
 import {getFutureDiaryLetterUrl} from "../routes";
 import {useAuth} from "../providers/AuthProvider";
@@ -56,9 +55,7 @@ const FutureLetterInfoPage = () => {
         From {letter.fromDate}
       </Box>
       <Box>
-        <HTMLBox>
-          {letter.content}
-        </HTMLBox>
+        {letter.content.split('\n').map(content => <Box>{content}</Box>)}
       </Box>
     </PageContainer>
   )
