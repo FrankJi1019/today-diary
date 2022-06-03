@@ -15,6 +15,7 @@ const ReportIssueForm = () => {
   const [message, setMessage] = useState('')
   const [buttonLoading, setButtonLoading] = useState(false)
   const [response, setResponse] = useState('')
+  const [showResult, setShowResult] = useState(false)
 
   const sendEmail = () => {
     emailjs.send(
@@ -23,15 +24,66 @@ const ReportIssueForm = () => {
       {subject, message, email},
       constants.emailJs.PublicKey
     ).then(() => {
-      setResponse('Issue has been reported')
+      setResponse('Your issue has been reported')
       setButtonLoading(false)
       setSubject('')
       setEmail('')
       setMessage('')
+      setShowResult(true)
     }, () => {
       setResponse('An error has occurred')
       setButtonLoading(false)
+      setShowResult(true)
     });
+  }
+
+  if (showResult) {
+    console.log(123)
+    return (
+      <Box
+        sx={{
+          position: 'relative',
+          backgroundColor: 'rgba(255, 255, 255, .5)',
+          padding: {
+            xs: '20px 10px',
+            sm: '20px 20px'
+          },
+          borderRadius: '10px',
+          width: {
+            xs: '250px',
+            sm: '500px'
+          }
+        }}
+      >
+        <Box
+          sx={{
+            color: response === 'Your issue has been reported' ? 'green' : 'red',
+            fontSize: {
+              xs: '16px',
+              sm: '20px'
+            }
+          }}
+        >
+          {response}
+        </Box>
+        <Box
+          onClick={() => navigate('/login')}
+          sx={{
+            color: '#444',
+            textDecoration: 'underline',
+            mt: '10px',
+            textAlign: 'right',
+            cursor: 'pointer',
+            fontSize: {
+              xs: '14px',
+              sm: '16px'
+            }
+          }}
+        >
+          Go back to login screen
+        </Box>
+      </Box>
+    )
   }
 
   return (
@@ -147,20 +199,6 @@ const ReportIssueForm = () => {
             }
           }}
         />
-      </Box>
-      <Box
-        sx={{
-          color: response === 'Issue has been reported' ? 'green' : 'red',
-          fontSize: '13px',
-          mb: '25px',
-          minHeight: '20px',
-          maxWidth: {
-            xs: '200px',
-            sm: '350px'
-          },
-        }}
-      >
-        {response}
       </Box>
       <Box
         sx={{
