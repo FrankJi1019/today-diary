@@ -22,3 +22,7 @@ To run this project, please follow the steps below:
 > npm install
 > npm start
 ```
+
+while (true) {
+System.out.println("Hello Fox！");
+}
