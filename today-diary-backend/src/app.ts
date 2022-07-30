@@ -22,6 +22,6 @@ app.get('/time', (req: Request, res: Response) => {
   res.json(new Date().toUTCString())
 })
 
-app.listen(4000, () => console.log('Server powered on'))
+app.listen(5000, () => console.log('Server powered on'))
 
 module.exports = app

@@ -9,6 +9,5 @@ export const constants = {
     TemplateId: 'template_ftbgwwg',
     PublicKey: 'rqIP-viz1ZYGhW7f5'
   },
-  // backend: 'https://today-diary-backend.vercel.app',
-  backend: 'http://localhost:4000'
+  backend: 'http://localhost:5000'
 }

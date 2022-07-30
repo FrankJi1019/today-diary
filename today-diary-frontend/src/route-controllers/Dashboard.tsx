@@ -1,5 +1,4 @@
-import {Box} from '@mui/material'
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Navigate} from 'react-router-dom'
 import Banner from "../components/Banner";
 import HomePage from "../pages/HomePage";
 import MyDiaryPage from "../pages/MyDiaryPage";
@@ -12,13 +11,7 @@ import UnreadLetterPage from "../pages/UnreadLetterPage";
 
 const Dashboard = () => {
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
+    <>
       <Banner />
       <Routes>
         <Route path='/' element={<HomePage />} />
@@ -29,8 +22,9 @@ const Dashboard = () => {
         <Route path='/future' element={<FutureLetterPage />} />
         <Route path='/future/unread' element={<UnreadLetterPage />} />
         <Route path='/future/:letterId' element={<FutureLetterInfoPage />} />
+        <Route path='*' element={<Navigate to='/' />} />
       </Routes>
-    </Box>
+    </>
   )
 }
 

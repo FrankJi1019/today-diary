@@ -3,6 +3,7 @@ import {AuthenticationDetails, CognitoUser, CognitoUserAttribute, CognitoUserSes
 import UserPool from "../cognito";
 import {constants} from "../constants";
 import {CognitoIdentityServiceProvider} from "aws-sdk";
+import {useNavigate} from "react-router-dom";
 
 const context = createContext({} as {
   login: (username: string, password: string) => Promise<boolean | string>
@@ -17,6 +18,8 @@ const context = createContext({} as {
 // @ts-ignore
 export const AuthProvider = ({children}) => {
 
+  const navigate = useNavigate()
+
   const login = (username: string, password: string) => {
     return new Promise<boolean | string>(res => {
       const user = new CognitoUser({
@@ -27,7 +30,6 @@ export const AuthProvider = ({children}) => {
         Username: username,
         Password: password
       })
-      console.log(user)
       user.authenticateUser(authDetails, {
         onSuccess: () => res(true),
         onFailure: (err) => res(err.message),
@@ -75,7 +77,7 @@ export const AuthProvider = ({children}) => {
   }
 
   const logout = () => {
-    UserPool.getCurrentUser()?.signOut()
+    UserPool.getCurrentUser()?.signOut(() => navigate('/login'))
   }
 
   const resendCode = (username: string) => {
